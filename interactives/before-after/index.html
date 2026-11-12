@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Before and after — KCL sample interactive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0}
+body{background:#fff;color:#393D3E;font-family:'Roboto',Arial,sans-serif;font-size:15.5px;line-height:1.55;padding:20px 22px}
+h1{font-family:'Lato',Arial,sans-serif;font-size:21px;margin:0 0 4px}
+h1::after{content:"";display:block;width:70px;border-top:3px solid #575756;margin-top:8px}
+.intro{color:#5a5f61;font-size:14px;margin:10px 0 14px}
+:focus-visible{outline:3px solid #2C236F;outline-offset:2px;border-radius:2px}
+.toggle{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tab{font:inherit;font-family:'Lato';font-weight:700;font-size:14px;border:1.5px solid #C7CDD1;background:#fff;
+  border-radius:18px;padding:8px 18px;cursor:pointer;color:#393D3E}
+.tab[aria-selected="true"]{background:#E2231A;border-color:#E2231A;color:#fff}
+.tab .tk{display:none;margin-left:6px}
+.tab[aria-selected="true"] .tk{display:inline}
+.panel{border:1px solid #C7CDD1;border-radius:3px;padding:16px 18px}
+.panel[hidden]{display:none}
+.tag{display:inline-block;font-family:'Lato';font-weight:700;font-size:11px;letter-spacing:.1em;padding:3px 10px;border-radius:2px;margin-bottom:12px}
+.tag.bad{background:#FBEDEA;color:#8C2B1D}
+.tag.good{background:#E6F2EB;color:#1B6E43}
+/* the mock mini-page */
+.mock{border:1px solid #E3E5E8;border-radius:3px;padding:14px 16px;background:#fff;margin-bottom:12px}
+.mock p{margin:0 0 8px;font-size:13px}
+.mock .fakehead{font-weight:700;font-size:13px}
+.mock .realhead{font-family:'Lato';font-weight:700;font-size:16px;margin:0 0 2px}
+.mock .realhead::after{content:"";display:block;width:50px;border-top:2.5px solid #575756;margin:5px 0 6px}
+.mock .redonly{color:#E2231A}
+.mock .imgph{height:46px;background:repeating-linear-gradient(45deg,#eef0f2 0 10px,#f7f8f9 10px 20px);border:1px solid #E3E5E8;border-radius:2px;margin-bottom:6px}
+.mock .cap{font-size:11px;color:#6b6f70;margin:0 0 4px}
+.mock a{color:#2C236F}
+.mock .note{border:1px solid #C7CDD1;border-radius:3px;padding:8px 10px;font-size:12.5px;margin-bottom:8px}
+.mock .note b{font-family:'Lato';color:#7343A7;display:block;font-size:12px;margin-bottom:2px}
+ul.marks{list-style:none;margin:0;padding:0;font-size:13.5px}
+ul.marks li{display:flex;gap:9px;padding:5px 0;align-items:flex-start}
+.ic{flex:none;width:19px;height:19px;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.ic.x{background:#FBEDEA;color:#8C2B1D}
+.ic.v{background:#E6F2EB;color:#1B6E43}
+footer{margin-top:14px;font-size:11.5px;color:#818181}
+</style>
+</head>
+<body>
+<h1>Before and after: the page standard</h1>
+<p class="intro">The same short page, twice. Switch between the versions to see what the build standard changes — and why.</p>
+
+<div class="toggle" role="tablist" aria-label="Before and after">
+  <button class="tab" role="tab" id="tb" aria-selected="true" aria-controls="pb">1&nbsp; Before — breaks the standard<span class="tk" aria-hidden="true">✓</span></button>
+  <button class="tab" role="tab" id="ta" aria-selected="false" aria-controls="pa" tabindex="-1">2&nbsp; After — meets the standard<span class="tk" aria-hidden="true">✓</span></button>
+</div>
+
+<div class="panel" id="pb" role="tabpanel" aria-labelledby="tb">
+  <span class="tag bad">BREAKS THE STANDARD</span>
+  <div class="mock">
+    <p class="fakehead">Preparing for the placeholder class</p>
+    <p>Bring your notes from the placeholder reading and be ready to discuss them. <span class="redonly">This part is important.</span></p>
+    <div class="imgph"></div>
+    <p style="margin-bottom:6px">To see the weekly schedule, <a href="#" onclick="return false">click here</a>.</p>
+  </div>
+  <ul class="marks">
+    <li><span class="ic x" aria-hidden="true">✕</span><span>The heading is a bolded paragraph — invisible to screen-reader navigation.</span></li>
+    <li><span class="ic x" aria-hidden="true">✕</span><span>Emphasis carried by colour alone — lost to colour-blind learners and anyone printing.</span></li>
+    <li><span class="ic x" aria-hidden="true">✕</span><span>The image has no alt text and no caption — it does nothing in its absence.</span></li>
+    <li><span class="ic x" aria-hidden="true">✕</span><span>&ldquo;Click here&rdquo; says nothing about where the link goes.</span></li>
+  </ul>
+</div>
+
+<div class="panel" id="pa" role="tabpanel" aria-labelledby="ta" hidden>
+  <span class="tag good">MEETS THE STANDARD</span>
+  <div class="mock">
+    <p class="realhead">Preparing for the placeholder class</p>
+    <p>Bring your notes from the placeholder reading and be ready to discuss them.</p>
+    <div class="note"><b>Note</b>Arrive with one question about the reading — the class starts from your questions.</div>
+    <div class="imgph"></div>
+    <p class="cap">A placeholder figure, captioned — alt text: &ldquo;Placeholder diagram of the weekly cycle&rdquo;.</p>
+    <p style="margin-bottom:6px"><a href="#" onclick="return false">View the weekly schedule</a>.</p>
+  </div>
+  <ul class="marks">
+    <li><span class="ic v" aria-hidden="true">✓</span><span>A real heading, in the heading font with its keyline — navigable and scannable.</span></li>
+    <li><span class="ic v" aria-hidden="true">✓</span><span>The important point is a labelled note — structure, not colour, carries the emphasis.</span></li>
+    <li><span class="ic v" aria-hidden="true">✓</span><span>The image declares its alt text and carries a caption.</span></li>
+    <li><span class="ic v" aria-hidden="true">✓</span><span>The link says where it goes.</span></li>
+  </ul>
+</div>
+
+<footer>Placeholder interactive — all content is placeholder by design. Pattern: before-after, in the KCL sample brand.</footer>
+
+<script>
+(function(){
+  var tabs=[document.getElementById('tb'),document.getElementById('ta')];
+  var panels=[document.getElementById('pb'),document.getElementById('pa')];
+  var cur=0;
+  function select(i,focus){
+    tabs[cur].setAttribute('aria-selected','false');tabs[cur].tabIndex=-1;panels[cur].hidden=true;
+    cur=i;
+    tabs[i].setAttribute('aria-selected','true');tabs[i].tabIndex=0;panels[i].hidden=false;
+    if(focus)tabs[i].focus();
+    report();
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){select(i);});
+    t.addEventListener('keydown',function(e){
+      var n=null,k=e.key;
+      if(k==='ArrowRight'||k==='ArrowDown'||k==='ArrowLeft'||k==='ArrowUp')n=1-i;
+      else if(k==='Home')n=0;else if(k==='End')n=1;
+      if(n!==null){e.preventDefault();select(n,true);}
+    });
+  });
+  function report(){try{parent.postMessage({type:'resize',height:document.body.scrollHeight},'*');}catch(e){}}
+  window.addEventListener('load',report);
+  window.addEventListener('resize',report);
+})();
+</script>
+</body>
+</html>
