@@ -49,9 +49,13 @@ nav.coursenav a[aria-current="page"]{color:#000;font-weight:700;border-left-colo
 @media(max-width:900px){.layout{flex-direction:column;gap:10px}nav.coursenav{width:auto;display:flex;flex-wrap:wrap}.rail{width:62px}.rail a span{display:none}}
 
 /* ---------- banner ---------- */
-.banner{position:relative;height:200px;background:
-  linear-gradient(90deg, var(--indigo), #4a3f94 55%, var(--red)) top/100% 6px no-repeat,
-  linear-gradient(120deg,#ececec,#f8f8f8 45%,#e4e4e6);border-radius:2px;margin-bottom:26px}
+.banner{position:relative;height:200px;border-radius:2px;margin-bottom:26px;overflow:hidden;
+  border-bottom:4px solid var(--red);
+  background:linear-gradient(105deg,#0E6E68 0%,#139187 36%,#45286E 36%,#7343A7 74%,var(--indigo) 100%)}
+.banner::before{content:"";position:absolute;left:36px;top:34px;border-style:solid;
+  border-width:15px 0 15px 25px;border-color:transparent transparent transparent rgba(255,255,255,.4)}
+.banner::after{content:"";position:absolute;left:74px;top:70px;border-style:solid;
+  border-width:11px 0 11px 18px;border-color:transparent transparent transparent rgba(255,255,255,.28)}
 .banner .plate{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#fff;
   box-shadow:0 2px 10px rgba(0,0,0,.08);padding:16px 30px;min-width:55%;}
 .banner .plate h1{font-size:24px;font-weight:400;margin:0}
@@ -135,5 +139,20 @@ table.sample th,table.sample td{border:1px solid var(--line);padding:8px 12px}
 
 /* pager */
 .pager{display:flex;justify-content:space-between;margin-top:34px;gap:12px}
+
+/* icon note card (as used in the live courses) */
+.notecard{border:1px solid var(--grey-border);border-radius:3px;padding:14px 18px;margin:0 0 18px}
+.notecard .nlabel{display:flex;align-items:center;gap:8px;font-family:'Lato';font-weight:700;color:#7343A7;margin-bottom:6px}
+.notecard .nlabel svg{width:17px;height:17px;fill:none;stroke:#7343A7;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.notecard p{margin:0}
+
+/* central glossary A-Z grid */
+.azgrid{display:grid;grid-template-columns:repeat(6,1fr);max-width:540px;margin:14px 0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.azgrid a{display:block;text-align:center;padding:9px 0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  color:var(--red);font-weight:700;font-size:14px;text-decoration:none}
+.azgrid a:hover{background:var(--grey-well)}
+dl.gloss{margin:10px 0 0;max-width:70ch}
+dl.gloss dt{font-family:'Lato';font-weight:700;margin-top:10px}
+dl.gloss dd{margin:2px 0 0}
 
 footer.note{border-top:1px solid #eee;margin-top:40px;padding:18px 0 0;font-size:13px;color:#6b6f70;max-width:76ch}
