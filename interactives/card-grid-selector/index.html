@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Card-grid selector — KCL sample interactive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0}
+body{background:#fff;color:#393D3E;font-family:'Roboto',Arial,sans-serif;font-size:15.5px;line-height:1.55;padding:20px 22px}
+h1{font-family:'Lato',Arial,sans-serif;font-size:21px;margin:0 0 4px;color:#393D3E}
+h1::after{content:"";display:block;width:70px;border-top:3px solid #575756;margin-top:8px}
+.intro{color:#5a5f61;font-size:14px;margin:10px 0 16px}
+:focus-visible{outline:3px solid #2C236F;outline-offset:2px;border-radius:2px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+.card{position:relative;text-align:left;font:inherit;background:#fff;border:1.5px solid #C7CDD1;border-radius:3px;padding:13px 15px;cursor:pointer}
+.card b{font-family:'Lato';font-size:15px;display:block;margin-bottom:4px}
+.card p{margin:0;font-size:13px;color:#5a5f61}
+.card:hover{border-color:#E2231A}
+.card[aria-selected="true"]{background:#E2231A;border-color:#E2231A}
+.card[aria-selected="true"] b,.card[aria-selected="true"] p{color:#fff}
+.tick{position:absolute;top:9px;right:10px;width:20px;height:20px;border-radius:50%;background:#fff;color:#E2231A;
+  font-size:12px;font-weight:700;display:none;align-items:center;justify-content:center}
+.card[aria-selected="true"] .tick{display:flex}
+.panel{border-left:4px solid #E2231A;background:#F8F9FA;border-radius:0 3px 3px 0;padding:14px 18px}
+.panel[hidden]{display:none}
+.eyebrow{font-family:'Lato';font-size:11px;font-weight:700;letter-spacing:.12em;color:#E2231A;margin-bottom:4px}
+.panel h2{font-family:'Lato';font-size:16px;margin:0 0 6px}
+.panel p{margin:0 0 8px;font-size:14px}
+.panel .ex{font-size:13px;color:#5a5f61}
+.panel .ex b{color:#393D3E}
+footer{margin-top:14px;font-size:11.5px;color:#818181}
+</style>
+</head>
+<body>
+<h1>Card-grid selector</h1>
+<p class="intro">Select a card to read the detail for that placeholder dimension below the grid.</p>
+
+<div class="grid" role="tablist" aria-label="Placeholder dimensions">
+  <button class="card" role="tab" id="t1" aria-selected="true" aria-controls="p1"><span class="tick" aria-hidden="true">✓</span><b>Placeholder dimension one</b><p>A one-line placeholder question about dimension one?</p></button>
+  <button class="card" role="tab" id="t2" aria-selected="false" aria-controls="p2" tabindex="-1"><span class="tick" aria-hidden="true">✓</span><b>Placeholder dimension two</b><p>A one-line placeholder question about dimension two?</p></button>
+  <button class="card" role="tab" id="t3" aria-selected="false" aria-controls="p3" tabindex="-1"><span class="tick" aria-hidden="true">✓</span><b>Placeholder dimension three</b><p>A one-line placeholder question about dimension three?</p></button>
+  <button class="card" role="tab" id="t4" aria-selected="false" aria-controls="p4" tabindex="-1"><span class="tick" aria-hidden="true">✓</span><b>Placeholder dimension four</b><p>A one-line placeholder question about dimension four?</p></button>
+</div>
+
+<div class="panel" id="p1" role="tabpanel" aria-labelledby="t1">
+  <div class="eyebrow">DETAIL</div><h2>Placeholder dimension one</h2>
+  <p>A short placeholder explanation of dimension one: two sentences describing what this dimension means and why a learner would care about it.</p>
+  <p class="ex"><b>Worked example:</b> a one-line placeholder worked example for dimension one.</p>
+</div>
+<div class="panel" id="p2" role="tabpanel" aria-labelledby="t2" hidden>
+  <div class="eyebrow">DETAIL</div><h2>Placeholder dimension two</h2>
+  <p>A short placeholder explanation of dimension two: two sentences describing what this dimension means and why a learner would care about it.</p>
+  <p class="ex"><b>Worked example:</b> a one-line placeholder worked example for dimension two.</p>
+</div>
+<div class="panel" id="p3" role="tabpanel" aria-labelledby="t3" hidden>
+  <div class="eyebrow">DETAIL</div><h2>Placeholder dimension three</h2>
+  <p>A short placeholder explanation of dimension three: two sentences describing what this dimension means and why a learner would care about it.</p>
+  <p class="ex"><b>Worked example:</b> a one-line placeholder worked example for dimension three.</p>
+</div>
+<div class="panel" id="p4" role="tabpanel" aria-labelledby="t4" hidden>
+  <div class="eyebrow">DETAIL</div><h2>Placeholder dimension four</h2>
+  <p>A short placeholder explanation of dimension four: two sentences describing what this dimension means and why a learner would care about it.</p>
+  <p class="ex"><b>Worked example:</b> a one-line placeholder worked example for dimension four.</p>
+</div>
+
+<footer>Placeholder interactive — all content is placeholder by design. Pattern: card-grid-selector, in the KCL sample brand.</footer>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('[role=tab]'));
+  var panels=tabs.map(function(t){return document.getElementById(t.getAttribute('aria-controls'));});
+  var cur=0;
+  function select(i,focus){
+    tabs[cur].setAttribute('aria-selected','false');tabs[cur].tabIndex=-1;panels[cur].hidden=true;
+    cur=i;
+    tabs[i].setAttribute('aria-selected','true');tabs[i].tabIndex=0;panels[i].hidden=false;
+    if(focus)tabs[i].focus();
+    report();
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){select(i);});
+    t.addEventListener('keydown',function(e){
+      var n=null,k=e.key;
+      if(k==='ArrowRight'||k==='ArrowDown')n=(i+1)%tabs.length;
+      else if(k==='ArrowLeft'||k==='ArrowUp')n=(i-1+tabs.length)%tabs.length;
+      else if(k==='Home')n=0;else if(k==='End')n=tabs.length-1;
+      if(n!==null){e.preventDefault();select(n,true);}
+    });
+  });
+  function report(){
+    try{parent.postMessage({type:'resize',height:document.body.scrollHeight},'*');}catch(e){}
+  }
+  window.addEventListener('load',report);
+  window.addEventListener('resize',report);
+})();
+</script>
+</body>
+</html>
