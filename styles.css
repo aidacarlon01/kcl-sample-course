@@ -1,0 +1,139 @@
+/* KCL sample course — theme stylesheet.
+   A faithful, self-contained reconstruction of the component styles used in the
+   KCL Career Accelerator Canvas theme, for demonstration only. */
+
+:root{
+  --red:#E2231A;          /* brand primary — actions, course nav */
+  --indigo:#2C236F;       /* global nav, body links */
+  --ink:#393D3E;          /* body text */
+  --keyline:#575756;      /* H2 underline bar */
+  --grey-head:#E3E5E8;    /* accordion header */
+  --grey-border:#C7CDD1;
+  --grey-panel:#F8F9FA;   /* accordion panel */
+  --grey-well:#F5F5F5;    /* wells (box_content) */
+  --line:#D4D7DE;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font-family:'Roboto',Arial,sans-serif;font-size:16px;line-height:1.6}
+h1,h2,h3,h4{font-family:'Lato','Roboto',Arial,sans-serif;color:var(--ink);line-height:1.25;margin:1.4em 0 .5em;font-weight:700}
+h1{font-size:30px;margin-top:0}
+h2{font-size:26px}
+h2.keyline::after{content:"";display:block;width:100px;border-top:3px solid var(--keyline);margin-top:10px}
+h3{font-size:20px}
+h4{font-size:17px}
+p{margin:0 0 14px}
+a{color:var(--indigo)}
+a:hover{color:var(--red)}
+:focus-visible{outline:3px solid var(--indigo);outline-offset:2px;border-radius:2px}
+.skip{position:absolute;left:-9999px;top:0;background:#fff;color:var(--indigo);padding:10px 16px;z-index:50}
+.skip:focus{left:8px;top:8px}
+
+/* ---------- LMS chrome ---------- */
+.lms{display:flex;min-height:100vh}
+.rail{width:88px;background:var(--indigo);color:#fff;flex:none;display:flex;flex-direction:column;align-items:center;padding:10px 0;gap:4px}
+.rail .logo{width:56px;height:56px;background:var(--red);display:flex;align-items:center;justify-content:center;
+  font-family:'Lato';font-weight:700;font-size:15px;letter-spacing:.04em;margin-bottom:10px}
+.rail a{color:#fff;text-decoration:none;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:9px 4px;width:100%}
+.rail a:hover{background:rgba(255,255,255,.12);color:#fff}
+.rail svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.main{flex:1;min-width:0}
+.crumbs{border-bottom:1px solid #eee;padding:14px 24px;font-size:14.5px}
+.crumbs a{color:var(--indigo);text-decoration:none}
+.crumbs span{color:#6b6f70}
+.layout{display:flex;gap:40px;padding:24px;max-width:1280px}
+nav.coursenav{width:190px;flex:none;font-size:14.5px}
+nav.coursenav a{display:block;color:var(--red);text-decoration:none;padding:7px 10px;border-left:3px solid transparent}
+nav.coursenav a:hover{text-decoration:underline}
+nav.coursenav a[aria-current="page"]{color:#000;font-weight:700;border-left-color:#000}
+.content{flex:1;min-width:0;max-width:860px;padding-bottom:60px}
+@media(max-width:900px){.layout{flex-direction:column;gap:10px}nav.coursenav{width:auto;display:flex;flex-wrap:wrap}.rail{width:62px}.rail a span{display:none}}
+
+/* ---------- banner ---------- */
+.banner{position:relative;height:200px;background:
+  linear-gradient(90deg, var(--indigo), #4a3f94 55%, var(--red)) top/100% 6px no-repeat,
+  linear-gradient(120deg,#ececec,#f8f8f8 45%,#e4e4e6);border-radius:2px;margin-bottom:26px}
+.banner .plate{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#fff;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);padding:16px 30px;min-width:55%;}
+.banner .plate h1{font-size:24px;font-weight:400;margin:0}
+
+/* ---------- components ---------- */
+.lede{font-weight:700;margin-bottom:14px}
+.box_content{background:var(--grey-well);padding:16px 20px;border-radius:2px;margin:0 0 18px}
+.box_content p:last-child{margin-bottom:0}
+.box_content .label{font-family:'Lato';font-weight:700;display:block;margin-bottom:4px}
+
+blockquote{margin:22px 0;padding:4px 0 4px 22px;border-left:4px solid var(--red);font-size:18px;font-style:italic}
+blockquote .credit{display:block;font-size:14px;font-style:normal;color:#6b6f70;margin-top:8px}
+
+.btn{display:inline-block;font-family:'Lato';font-weight:700;font-size:15px;text-decoration:none;
+  border-radius:3px;padding:10px 22px;cursor:pointer;border:1px solid transparent}
+.btn-primary{background:var(--red);color:#fff}
+.btn-primary:hover{background:#c41e16;color:#fff}
+.btn-secondary{background:#fff;color:var(--ink);border-color:var(--grey-border)}
+.btn-secondary:hover{background:var(--grey-well)}
+.btn-download::before{content:"\2913\00a0\00a0"}
+
+/* accordion — native HTML rebuild */
+details.accordion{border:1px solid var(--grey-border);border-radius:3px;margin-bottom:10px;overflow:hidden}
+details.accordion summary{background:var(--grey-head);padding:10px 14px;font-weight:700;cursor:pointer;list-style:none;position:relative;padding-right:40px}
+details.accordion summary::-webkit-details-marker{display:none}
+details.accordion summary::after{content:"";position:absolute;right:16px;top:50%;width:9px;height:9px;
+  border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:translateY(-70%) rotate(45deg);transition:transform .15s}
+details.accordion[open] summary::after{transform:translateY(-30%) rotate(225deg)}
+details.accordion .panel{background:var(--grey-panel);padding:12px 14px;border-top:1px solid var(--grey-border)}
+details.accordion .panel p:last-child{margin-bottom:0}
+@media (prefers-reduced-motion: reduce){details.accordion summary::after{transition:none}}
+
+/* video */
+.video{position:relative;background:#121417;aspect-ratio:16/9;border-radius:2px;display:flex;align-items:center;justify-content:center;margin:6px 0 10px}
+.video .play{width:62px;height:62px;border-radius:50%;background:var(--red);border:0;cursor:pointer;position:relative}
+.video .play::after{content:"";position:absolute;left:55%;top:50%;transform:translate(-50%,-50%);
+  border-style:solid;border-width:11px 0 11px 18px;border-color:transparent transparent transparent #fff}
+.video .vtitle{position:absolute;left:14px;bottom:10px;color:#fff;font-size:13px;opacity:.85}
+.transcript-button{font-family:'Lato';font-weight:700;font-size:14px;color:var(--indigo);background:#fff;
+  border:1px solid var(--grey-border);border-radius:3px;padding:8px 16px;cursor:pointer}
+.transcript-button[aria-expanded="true"]{background:var(--grey-well)}
+.transcript{margin-top:10px}
+
+/* figure */
+figure{margin:20px 0}
+figure .imgph{height:190px;background:repeating-linear-gradient(45deg,#eef0f2 0 14px,#f7f8f9 14px 28px);
+  border:1px solid var(--line);border-radius:2px;display:flex;align-items:center;justify-content:center;color:#6b6f70;font-size:14px}
+figcaption{font-size:13.5px;color:#6b6f70;margin-top:6px}
+
+/* explore / overview cards */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0 22px}
+@media(max-width:700px){.cards{grid-template-columns:1fr}}
+.card{border:1px solid var(--grey-border);border-radius:3px;padding:18px;text-decoration:none;color:var(--ink);display:block}
+.card:hover{box-shadow:0 3px 12px rgba(0,0,0,.09);color:var(--ink)}
+.card h3{margin:0 0 6px;font-size:17px;color:var(--indigo)}
+.card p{margin:0;font-size:14px}
+.overview-card{border:1px solid var(--grey-border);border-radius:3px;padding:20px;text-align:center}
+.overview-card p{font-size:14.5px}
+
+/* action card */
+.action{border:1px solid var(--grey-border);border-left:4px solid var(--red);border-radius:3px;padding:18px 20px;margin:26px 0}
+
+/* glossary */
+a.glossary{color:var(--red);text-decoration:underline dotted;cursor:pointer}
+dialog.glossary-modal{border:1px solid var(--grey-border);border-radius:4px;max-width:420px;padding:22px 24px}
+dialog.glossary-modal::backdrop{background:rgba(44,35,111,.35)}
+dialog.glossary-modal h3{margin-top:0}
+dialog.glossary-modal .close{float:right;border:0;background:none;font-size:20px;cursor:pointer;color:var(--ink)}
+
+/* palette swatches */
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin:16px 0}
+.swatch{border:1px solid var(--line);border-radius:3px;overflow:hidden;font-size:13px}
+.swatch .chip{height:64px}
+.swatch .meta{padding:8px 12px}
+.swatch .meta b{display:block}
+
+/* tables */
+table.sample{border-collapse:collapse;width:100%;font-size:14.5px;margin:14px 0}
+table.sample th{background:var(--grey-well);text-align:left}
+table.sample th,table.sample td{border:1px solid var(--line);padding:8px 12px}
+
+/* pager */
+.pager{display:flex;justify-content:space-between;margin-top:34px;gap:12px}
+
+footer.note{border-top:1px solid #eee;margin-top:40px;padding:18px 0 0;font-size:13px;color:#6b6f70;max-width:76ch}

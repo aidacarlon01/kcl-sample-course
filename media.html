@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accessibility and structure — KCL_SAMPLE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="theme.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<div class="lms">
+  <div class="rail" role="presentation"><div class="logo" aria-hidden="true">LMS</div><a href="#content"><svg viewBox="0 0 22 24" aria-hidden="true"><circle cx="11" cy="7" r="4"/><path d="M3 20c1.5-4 5-6 8-6s6.5 2 8 6"/></svg><span>Account</span></a><a href="#content"><svg viewBox="0 0 22 24" aria-hidden="true"><circle cx="11" cy="12" r="8"/><path d="M11 12l4-4"/></svg><span>Dashboard</span></a><a href="#content"><svg viewBox="0 0 22 24" aria-hidden="true"><path d="M4 4h10a3 3 0 0 1 3 3v13H7a3 3 0 0 0-3 3z"/><path d="M4 4v16"/></svg><span>Courses</span></a><a href="#content"><svg viewBox="0 0 22 24" aria-hidden="true"><rect x="3" y="5" width="16" height="15" rx="2"/><path d="M3 10h16M7 3v4M15 3v4"/></svg><span>Calendar</span></a><a href="#content"><svg viewBox="0 0 22 24" aria-hidden="true"><rect x="3" y="4" width="16" height="14" rx="2"/><path d="M3 6l8 7 8-7"/></svg><span>Inbox</span></a><a href="#content"><svg viewBox="0 0 22 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M8.5 9a2.5 2.5 0 1 1 3.5 2.3c-.8.4-1 .9-1 1.7"/><circle cx="11" cy="16" r=".5"/></svg><span>Help</span></a></div>
+  <div class="main">
+    <div class="crumbs"><a href="index.html">KCL_SAMPLE</a> <span>›</span> <span>Accessibility and structure</span></div>
+    <div class="layout">
+      <nav class="coursenav" aria-label="Course navigation"><a href="index.html">Home</a><a href="reading-content.html">Page 1</a><a href="callouts-navigation.html">Page 2</a><a href="media.html" aria-current="page">Page 3</a><a href="interactive-activities.html">Page 4</a></nav>
+      <main class="content" id="content">
+
+<div class="banner"><div class="plate"><h1>Accessibility and structure</h1></div></div>
+<p class="lede">Accessibility here is not a layer on top — it is how the components are built.</p>
+<h2 class="keyline">Video never travels alone</h2>
+<p>Every video carries its transcript on the same page. Captions and transcripts came from the video platform’s transcription workflow once it had been tested and adopted — one pipeline, every video, no separate provider.</p>
+<div class="video"><button class="play" aria-label="Play video (placeholder)"></button><span class="vtitle">Placeholder video · 03:45</span></div>
+<button class="transcript-button" aria-expanded="false" aria-controls="transcript-2">Transcript</button>
+<div class="transcript box_content" id="transcript-2" hidden>
+<p><strong>Transcript.</strong> A transcript is a reading experience, not a compliance artefact — full sentences, speaker labels when they matter, and the same typography as the rest of the page.</p>
+</div>
+<h2 class="keyline">Images declare their purpose</h2>
+<figure>
+<div class="imgph">figure placeholder — a labelled diagram would sit here</div>
+<figcaption>Informative images get alt text that does their job in their absence; decorative ones get <code>alt=""</code> so screen readers skip them.</figcaption>
+</figure>
+<h2 class="keyline">The accordion, rebuilt on native HTML</h2>
+<p>Accordions hold long, parallel detail — never required reading. This one has a story: the original was JavaScript-dependent, and a platform update quietly broke it. It was rebuilt on native HTML, so expanding and collapsing now belongs to the browser — keyboard support included, nothing left to break:</p>
+<details class="accordion">
+<summary>Take time out</summary>
+<div class="panel"><p>Each accordion opens with a lead-in sentence on the page, so the hidden content is optional depth — a learner who never opens it misses detail, not meaning.</p></div>
+</details>
+<details class="accordion">
+<summary>Breathe deeply</summary>
+<div class="panel"><p>Headings in a set share one grammatical shape — all verb-first here — and stay short enough to hold one line.</p></div>
+</details>
+<details class="accordion">
+<summary>Carry on reading</summary>
+<div class="panel"><p>Between three and ten lines per panel. Less belongs in the paragraph above; more deserves its own page.</p></div>
+</details>
+<h2 class="keyline">Structure you can feel from a keyboard</h2>
+<p>Tab from the top of this page: a skip link appears first, the focus ring is thick and indigo, and every interactive element is a real button or link. Heading order is strict, so rotor navigation reads like a table of contents.</p>
+<div class="pager"><a class="btn btn-secondary" href="callouts-navigation.html">← Previous</a><a class="btn btn-secondary" href="interactive-activities.html">Next →</a></div>
+
+<footer class="note"><p><strong>A sample course, not a real one.</strong> This page demonstrates, with explanatory copy, the component set and theme I built and maintained for two Career Accelerator programmes delivered with King’s College London on Canvas LMS. The stylesheet and script here are faithful reconstructions made for this portfolio; all content is fictional, and no King’s branding, logo or course material is used.</p></footer>
+      </main>
+    </div>
+  </div>
+</div>
+</body>
+</html>
